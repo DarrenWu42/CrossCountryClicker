@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <link rel="stylesheet" type="text/css" href="interface.css" />
+        <script type="text/javascript" src="main.js"></script>
+        <title>10 Quick Bud!</title>
+    </head>
+    <body onload="reloadPage()">
+        <h1>Cross Country Derivative Clicker</h1>
+        <div class="flex-container">
+            <div class="flex-item">
+            	<h3>Buy Stuff</h3>
+                <h2>Scroll down for more stuff</h2>
+                <div id="buyStuff">
+                	<p><img src="rsc/img/ccrunnerbutton1.jpg" alt="runnerbutton" title="Train a Cross Country Runner" onClick="buyClicker1()" height="100"></p>
+                    <p>Cost: <span id="nextCostClicker1">10</span> Buds | &nbsp;Runners: <span id="clicker1">0</span></p>
+                    <br>
+                    <p><img src="rsc/img/coachbutton1.jpeg" alt="coachbutton" title="Buy a Coach to train Runners" onClick="buyClicker2()" height="100"></p>
+                    <p>Cost: <span id="nextCostClicker2">250</span> Buds | Coaches: <span id="clicker2">0</span></p>
+                    <br>
+                    <p><img src="rsc/img/schoolbutton1.jpeg" alt="schoolbutton" title="Buy a School to hire Coaches" onClick="buyClicker3()" height="100"></p>
+                    <p>Cost: <span id="nextCostClicker3">10000</span> Buds | Schools: <span id="clicker3">0</span></p>
+                    <br>
+                    <p><img src="rsc/img/districtbutton.jpg" alt="districtbutton" title="Buy a School District to costruct Schools" onClick="buyClicker4()" height="100"></p>
+                    <p>Cost: <span id="nextCostClicker4">1000000</span> Buds | School Districts: <span id="clicker4">0</span></p>
+                    <br>
+                    <p><img src="rsc/img/countybutton1.jpg" alt="countybutton" title="Buy a County to costruct School Districts" onClick="buyClicker5()" height="100"></p>
+                    <p>Cost: <span id="nextCostClicker5">1000000000</span> Buds | Counties: <span id="clicker5">0</span></p>
+                    <br>
+                    <p><img src="rsc/img/tricountybutton1.gif" alt="tricountybutton" title="Buy a State to create Counties" onClick="buyClicker6()" height="100"></p>
+                    <p>Cost: <span id="nextCostClicker6">10000000000000</span> Buds | Tri-Counties: <span id="clicker6">0</span></p>
+                    <br>
+                    <p><img src="rsc/img/statebutton1.jpeg" alt="statebutton" title="Buy a State to create Tri-Counties" onClick="buyClicker7()" height="100"></p>
+                    <p>Cost: <span id="nextCostClicker7">1000000000000000000</span> Buds | States: <span id="clicker7">0</span></p>
+            	</div>
+            </div>
+            <div id="resources" class="flex-item">
+        		<h3>Buds: <span id="clicks">0</span></h3>
+                <h3>Cycle Speed: <span id="cycleSpeed">1000</span> ms</h3>
+                <!--<div id="progress">
+ 					<div id="bar"></div>
+				</div>-->
+                <p><img src="rsc/img/dinkbutton1.jpg" alt="dink_bud" onclick="addClicks(1)" height="200" width="200"></p>
+                
+            </div>
+            <div class="flex-item">
+            	<h3>Upgrade Section</h3>
+                <div id="upgrades">
+            		<p><img src="rsc/img/shoesupgrade.png" alt="shoeupgradebutton" title="Buy better shoes to run faster" onClick="upgrades.cycleSpeedUG()" height="200"></p>
+               		<p>Cost: <span id="upgrades.cycleSpeed1Cost">1000</span> Buds | Upgrades Cycle Speed</p>
+                </div>
+            </div>
+        </div>
+        <audio id="tenQuick"></audio>
+    </body>
+</html>
