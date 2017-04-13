@@ -40,6 +40,7 @@ var upgrades ={
 	cycleSpeedUG: function(){
 		if(clicks >= upgrades.cycleSpeedUGCost){
 			cycleSpeed -= 100;
+			clicks -= upgrades.cycleSpeedUGCost;
 			document.getElementById('cycleSpeed').innerHTML = cycleSpeed;
 			nextCost = Math.floor(upgrades.cycleSpeedUGCost*1000);
 			upgrades.cycleSpeedUGCost = nextCost;
