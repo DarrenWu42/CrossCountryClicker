@@ -3,6 +3,7 @@ var cycleSpeed = 1000;
 var nextCost = 0;
 var multiplier = [1,1,1,1,1,1,1];
 var ticking = setInterval(function(){doTick();}, cycleSpeed);
+var saver = setInterval(function(){saveGame();}, 60000);
 
 var clickers = [0,0,0,0,0,0,0];
 var clickersBought = [0,0,0,0,0,0,0];
@@ -17,10 +18,10 @@ var upgrades ={
 		if(clicks >= upgrades.cycleSpeedUGCost){
 			cycleSpeed -= 100;
 			clicks -= upgrades.cycleSpeedUGCost;
-			document.getElementById('cycleSpeed').innerHTML = cycleSpeed;
+			document.getElementById('cycleSpeed').innerHTML = commaThat(cycleSpeed);
 			nextCost = Math.floor(upgrades.cycleSpeedUGCost*1000);
 			upgrades.cycleSpeedUGCost = nextCost;
-			document.getElementById('upgrades.cycleSpeedUGCost').innerHTML = upgrades.cycleSpeedUGCost;
+			document.getElementById('upgrades.cycleSpeedUGCost').innerHTML = commaThat(upgrades.cycleSpeedUGCost);
 			clearInterval(ticking);
 			ticking = setInterval(function(){doTick();}, cycleSpeed);
 		}
@@ -31,15 +32,15 @@ var upgrades ={
 			clicks -= upgrades.multiplierUGCost[multiplierNumber];
 			nextCost = Math.floor(upgrades.multiplierUGCost[multiplierNumber]*1000);
 			upgrades.multiplierUGCost[multiplierNumber] = nextCost;
-			document.getElementById('upgrades.multiplierUGCost' + (multiplierNumber + 1)).innerHTML = upgrades.multiplierUGCost[multiplierNumber];
-			document.getElementById('multiplier' + (multiplierNumber + 1)).innerHTML = multiplier[multiplierNumber];
+			document.getElementById('upgrades.multiplierUGCost' + (multiplierNumber + 1)).innerHTML = commaThat(upgrades.multiplierUGCost[multiplierNumber]);
+			document.getElementById('multiplier' + (multiplierNumber + 1)).innerHTML = commaThat(multiplier[multiplierNumber]);
 		}
 	}
 };
 
 function addClicks(number){
 	clicks += number;
-    document.getElementById("clicks").innerHTML = clicks;
+    document.getElementById("clicks").innerHTML = commaThat(clicks);
 }
 
 function buyClicker(clickerNumber){
@@ -49,30 +50,30 @@ function buyClicker(clickerNumber){
 		 clickersBought[clickerNumber]++;
 		 clicks -= clickerCost;
 		 
-		 document.getElementById('clicker'+(clickerNumber+1)).innerHTML = clickers[clickerNumber];
-		 document.getElementById('clicks').innerHTML = clicks;
+		 document.getElementById('clicker'+(clickerNumber+1)).innerHTML = commaThat(clickers[clickerNumber]);
+		 document.getElementById('clicks').innerHTML = commaThat(clicks);
 		 
 		 nextCostClicker[clickerNumber] = Math.floor(OGCost[clickerNumber] * Math.pow(1.15,clickersBought[clickerNumber]));
-	 	 document.getElementById('nextCostClicker'+(clickerNumber+1)).innerHTML = nextCostClicker[clickerNumber];
+	 	 document.getElementById('nextCostClicker'+(clickerNumber+1)).innerHTML = commaThat(nextCostClicker[clickerNumber]);
 	 }
 }
 function reloadPage(){
 	var i;
 	for(i = 0; i < clickers.length; i++){
-		document.getElementById('clicker' + (i + 1)).innerHTML = clickers[i];
-		document.getElementById('multiplier' + (i + 1)).innerHTML = multiplier[i];
+		document.getElementById('clicker' + (i + 1)).innerHTML = commaThat(clickers[i]);
+		document.getElementById('multiplier' + (i + 1)).innerHTML = commaThat(multiplier[i]);
 		nextCostClicker[i] = OGCost[i];
-		document.getElementById('nextCostClicker' + (i + 1)).innerHTML = nextCostClicker [i];
+		document.getElementById('nextCostClicker' + (i + 1)).innerHTML = commaThat(nextCostClicker[i]);
 	}
 
-	document.getElementById('clicks').innerHTML = clicks;
-	document.getElementById('cycleSpeed').innerHTML = cycleSpeed;
+	document.getElementById('clicks').innerHTML = commaThat(clicks);
+	document.getElementById('cycleSpeed').innerHTML = commaThat(cycleSpeed);
 }
 function doTick(){
 	var i;
 	for(i = clickers.length - 2; i >= 0; i--){
 		clickers[i] += clickers[i + 1] * multiplier[i];
-		document.getElementById('clicker' + (i + 1)).innerHTML = clickers[i];
+		document.getElementById('clicker' + (i + 1)).innerHTML = commaThat(clickers[i]);
 	}
 	addClicks(clickers[0]*multiplier[0]);
 }
@@ -99,5 +100,21 @@ function loadGame(){
 	if (typeof savegame.nextCostClicker !== "undefined"){ nextCostClicker = savegame.nextCostClicker;}
 	if (typeof savegame.cycleSpeedCost !== "undefined"){ upgrades.cycleSpeedUGCost = savegame.cycleSpeedCost;}
 	if (typeof savegame.multiplierCost !== "undefined"){ upgrades.multiplierUGCost = savegame.multiplierCost;}
+	sync();
+}
+function sync(){
+	var i;
+	document.getElementById("clicks").innerHTML = commaThat(clicks);
+	document.getElementById('cycleSpeed').innerHTML = commaThat(cycleSpeed);
+	document.getElementById('upgrades.cycleSpeedUGCost').innerHTML = commaThat(upgrades.cycleSpeedUGCost);
+	for(i = 0; i < clickers.length; i++){
+		document.getElementById('multiplier' + (i + 1)).innerHTML = commaThat(multiplier[i]);
+		document.getElementById('clicker' + (i + 1)).innerHTML = commaThat(clickers[i]);
+		document.getElementById('nextCostClicker' + (i + 1)).innerHTML = commaThat(nextCostClicker[i]);
+		document.getElementById('upgrades.multiplierUGCost' + (i + 1)).innerHTML = commaThat(upgrades.multiplierUGCost[i]);
+	}
+}
 
+function commaThat(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
