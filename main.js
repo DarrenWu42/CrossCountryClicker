@@ -58,16 +58,7 @@ function buyClicker(clickerNumber){
 	 }
 }
 function reloadPage(){
-	var i;
-	for(i = 0; i < clickers.length; i++){
-		document.getElementById('clicker' + (i + 1)).innerHTML = commaThat(clickers[i]);
-		document.getElementById('multiplier' + (i + 1)).innerHTML = commaThat(multiplier[i]);
-		nextCostClicker[i] = OGCost[i];
-		document.getElementById('nextCostClicker' + (i + 1)).innerHTML = commaThat(nextCostClicker[i]);
-	}
-
-	document.getElementById('clicks').innerHTML = commaThat(clicks);
-	document.getElementById('cycleSpeed').innerHTML = commaThat(cycleSpeed);
+	loadGame();
 }
 function doTick(){
 	var i;
