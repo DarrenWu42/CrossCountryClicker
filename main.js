@@ -76,10 +76,28 @@ function doTick(){
 	}
 	addClicks(clickers[0]*multiplier[0]);
 }
+function saveGame(){
+	var save={
+		clicks:clicks,
+		cycleSpeed:cycleSpeed,
+		multiplier:multiplier,
+		clickers:clickers,
+		clickersBought:clickersBought,
+		nextCostClicker:nextCostClicker,
+		cycleSpeedCost:upgrades.cycleSpeedUGCost,
+		multiplierCost:upgrades.multiplierUGCost
+	};
+	localStorage.setItem("save",JSON.stringify(save));
+}
+function loadGame(){
+	var savegame = JSON.parse(localStorage.getItem("save"));
+	if (typeof savegame.clicks !== "undefined"){ clicks = savegame.clicks;}
+	if (typeof savegame.cycleSpeed !== "undefined"){ cycleSpeed = savegame.cycleSpeed;}
+	if (typeof savegame.multiplier !== "undefined"){ multiplier = savegame.multiplier;}
+	if (typeof savegame.clickers !== "undefined"){ clickers = savegame.clickers;}
+	if (typeof savegame.clickersBought !== "undefined"){ clickersBought = savegame.clickersBought;}
+	if (typeof savegame.nextCostClicker !== "undefined"){ nextCostClicker = savegame.nextCostClicker;}
+	if (typeof savegame.cycleSpeedCost !== "undefined"){ upgrades.cycleSpeedUGCost = savegame.cycleSpeedCost;}
+	if (typeof savegame.multiplierCost !== "undefined"){ upgrades.multiplierUGCost = savegame.multiplierCost;}
 
-/*
-window.setInterval(function(){
-	document.getElementByID("tenQuick").play();
-	//add stuff for clicking 10 times
-}, Math.floor((Math.random()*1500000)+300000));
-*/
+}
