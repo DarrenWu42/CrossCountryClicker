@@ -1,6 +1,8 @@
 # CrossCountryClicker
 Description:
-A small game I made on my free time. This will be updated periodically to include more stuff and clean up code.
+A small game I made on my free time. This will be updated periodically to include more stuff and clean up code. Don't expect much out of it since I'm not actively working on it anymore.
+
+You can play the game [here](https://darrenwu42.github.io/CrossCountryClicker/).
 
 Update History:
 - Version 5 Added tooltips to save and load game icons; on reload, game now automatically loads previously saved game data
